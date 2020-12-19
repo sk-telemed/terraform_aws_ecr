@@ -3,9 +3,9 @@ resource "aws_ecr_repository" "container_repository" {
 }
 
 resource "aws_ecr_lifecycle_policy" "container_repository_lifecycle_policy" {
-  count = length(var.use_default_lifecycle_policy_rule)?1:0
+  count      = var.use_default_lifecycle_policy_rule ? 1 : 0
   repository = aws_ecr_repository.container_repository.name
-  policy = <<EOF
+  policy     = <<EOF
 {
     "rules": [
         {
@@ -28,7 +28,7 @@ EOF
 
 resource "aws_ecr_repository_policy" "container_repository_policy" {
   repository = aws_ecr_repository.container_repository.name
-  policy = <<EOF
+  policy     = <<EOF
 {
     "Version": "2008-10-17",
     "Statement": [
