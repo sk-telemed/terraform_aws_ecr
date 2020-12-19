@@ -1,1 +1,1 @@
-# terraform_aws_ecr
+# Terraform AWS ECR module 
